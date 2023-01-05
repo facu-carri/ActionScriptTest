@@ -1,5 +1,10 @@
 package
 {
+	import assets.GaturroMC;
+	import assets.vipMedal;
+	import com.qb9.flashlib.movieclip.MovieClipManager;
+	import farm.AceleradorSinPasaporte;
+	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -12,6 +17,8 @@ package
 	import flash.text.TextFormatAlign;
 	import flash.filters.GlowFilter;
 	import flash.external.ExternalInterface;
+	import com.qb9.flashlib.lang.foreach;
+	import mx.logging.Log;
 	
 	public class dialogOption extends Sprite 
 	{
@@ -24,55 +31,86 @@ package
 		private var userAnswers:Array;
 		private var npcAnswers:Array;
 		private var title:String;
+		private var allOptions:Array = [];
 		
 		public function dialogOption() 
 		{
+			bye();
+			bye();
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		import flash.utils.setTimeout;
+		
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			/*var m:MovieClip = new vipMedal();
+			var a:AppAlarmClockSC = new AppAlarmClockSC;
+			var g:GaturroMC = new GaturroMC;
+			var asd:AceleradorSinPasaporte = new AceleradorSinPasaporte;
+			var dda:* = Log.isDebug();*/
 			//api.userAvatar.addEventListener('wrsoeStartedMoving', dispose);
 			//if (ExternalInterface.available) ExternalInterface.call("console.log", "HELLO");
-			this.options = "Pedir perm-Pedir discul-Comprarasd tet ete ettet-a-a-testosteronaliquida asdasdsad entucolaasdasdasdasddkjgfdogjfdiogja-a-odifjgifogjfoigjoigjgofjgfogjf".split('-');
+			//var g:Gaturro = new Gaturro(null);
+			this.options = "SI-NO".split('-');
 			this.userAnswers = "Por favor, Narciso, ¿podrías prestarme las tijeras?-Perdón, Narciso, actué muy rápido y no pensé las cosas- ".split('-');
 			this.npcAnswers = "talk1-talk2-talk3".split('-');
 			var aval:Boolean = ExternalInterface.available;
-			this.title = "ExternalInterface Avaliable? " + aval.toString();
 			var balloonOptions:MovieClip = new MovieClip;
 			this.addChild(balloonOptions);
 			
-			var field:TextField = createTitle(title ? title : 'HABLAR SOBRE...');
+			var btns:MovieClip = new MovieClip();
+			for (var j:int = 0; j < options.length; j++){
+				createTextField(options[j]);
+			}
+			
+			var field:TextField = createTitle(title ? title : '¿JURAS LEALTAD ETERNA?');
 			balloonOptions.addChild(field);
 			
-			var btns:MovieClip = new MovieClip();
 			for (var i:int = 0; i < options.length; i++){
 				var option:MovieClip = createOptionWithText(options[i], i, field.textHeight + 11);
 				btns.addChild(option);
 			}
 			balloonOptions.addChild(btns);
-			
-			var balloonBg:Shape = createShape(Color.BLACK, 0, 0, BALLOON_MAX_WIDTH + 24, BALLOON_MAX_HEIGTH + 12, 0.8);
+			field.width = BALLOON_MAX_WIDTH + 6;
+			var balloonBg:Shape = createShape(Color.BLACK, 0, 0, BALLOON_MAX_WIDTH + 12, BALLOON_MAX_HEIGTH + 12, 0.8);
 			balloonOptions.addChildAt(balloonBg, 0);
-			var f:Function = function():void{
-				var t2:TextField = createTextField(ExternalInterface.available.toString(), Color.PURPLE);
-				balloonOptions.addChild(t2);
-				if (ExternalInterface.available){
-					ExternalInterface.call("console.log", "YourString");
-				}
-				//ExternalInterface.call("console.log", "hello world");
-			}
-			setTimeout(f, 3000);
 			//balloonOptions.y -= BALLOON_MAX_HEIGTH;
+		}
+		
+		private function bye():void 
+		{
+			for (var i:int = 0; i < this.numChildren; i++){
+				var thing:DisplayObject = this.getChildAt(i) as DisplayObject;
+				if (thing.name.indexOf('instance') != -1){
+					this.removeChild(thing);
+				}
+			}
+		}
+		
+		private function call(txt:String):void 
+		{
+			if(ExternalInterface.available)
+				ExternalInterface.call('console.log', txt);
 		}
 		
 		private function createTitle(text:String):TextField
 		{
-			var field:TextField = createTextField(text, Color.WHITE);
-			field.y += 5;
+			var field:TextField = createTextField2(text);
 			BALLOON_MAX_HEIGTH += field.textHeight;
+			return field;
+		}
+		
+		private function createTextField2(text:String):TextField 
+		{
+			var field:TextField = new TextField();
+			field = getTextfield(field, FIELD_MAX_WIDTH);
+			decorateTextField(text.toUpperCase(), field, Color.BLACK);
+			field.x += 3;
+			field.y += 4;
+			field.mouseEnabled = false;
+			calculateMax(field.textWidth);
 			return field;
 		}
 		
@@ -104,14 +142,13 @@ package
 		private function createOptionWithText(text:String, i:int, fHeight:int):MovieClip
 		{
 			var option:MovieClip = new MovieClip();
-			var field:TextField = createTextField(text, Color.BLACK);
-			var btn:MovieClip = generateOptionMc(field.textWidth + 12, field.textHeight);
+			var field:TextField = createTextField(text, Color.BLACK, true);
+			var btn:MovieClip = generateOptionMc(BALLOON_MAX_WIDTH, field.textHeight);
 			btn.name = 'btn_' + i;
 			BALLOON_MAX_HEIGTH += btn.height + 6;
 			btn.addEventListener(MouseEvent.ROLL_OVER, over);
 			btn.addEventListener(MouseEvent.MOUSE_OUT, out);
 			btn.addEventListener(MouseEvent.CLICK, click);
-			
 			option.addChild(btn);
 			option.addChild(field);
 			if (i != 0){
@@ -124,34 +161,35 @@ package
 		
 		private function calculateMax(width:Number):void
 		{
-			BALLOON_MAX_WIDTH = Math.max(BALLOON_MAX_WIDTH, width);
+			BALLOON_MAX_WIDTH = Math.max(BALLOON_MAX_WIDTH, width + 12);
 		}
 		
-		private function createTextField(text:String, color:uint):TextField 
+		private function createTextField(text:String, color:uint = Color.BLACK, calculateWidth:Boolean = false):TextField 
 		{
 			var field:TextField = new TextField();
-			field = getTextfield(field);
+			field = getTextfield(field, calculateWidth ? BALLOON_MAX_WIDTH : FIELD_MAX_WIDTH);
 			decorateTextField(text.toUpperCase(), field, color);
 			field.x += 3;
 			field.y -= 1
 			field.mouseEnabled = false;
-			calculateMax(field.textWidth);
+			if(!calculateWidth) calculateMax(field.textWidth);
 			return field;
 		}
 		
 		private function decorateTextField(string:String, field:TextField, color:uint) : void
         {
-            field.defaultTextFormat = new TextFormat('Cooper', 12, color);
+            field.defaultTextFormat = new TextFormat('Cooper', 12, color, null, null, null, null, null, 'center');
             field.text = string;
         }
 		
-		public function getTextfield(field:TextField):TextField
+		public function getTextfield(field:TextField, width:Number):TextField
 		{
 			field.multiline = true;
 			field.wordWrap = true;
-			field.width = FIELD_MAX_WIDTH;
+			field.width = Math.min(width, FIELD_MAX_WIDTH);
 			field.height = FIELD_HEIGHT;
 			field.autoSize = getAutosize();
+			field.border = true; field.borderColor = Color.BLUE;
 			field.embedFonts = false;
 			field.selectable = false;
 			return field;

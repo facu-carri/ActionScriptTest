@@ -3,7 +3,7 @@
 <!--Any modifications you make may be lost.-->
 <flex-config>
   <target-player>28.0</target-player>
-  <benchmark>false</benchmark>
+  <benchmark>true</benchmark>
   <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
   <compiler>
     <define append="true">
@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'13/08/2022'</value>
+      <value>'27/11/2022'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -34,14 +34,34 @@
     <source-path append="true">
       <path-element>F:\Dev\encrypt\RSA\src</path-element>
       <path-element>F:\Dev\mmo-flash-flashlib\src</path-element>
+      <path-element>F:\Dev\mmo-flash-mambo\src</path-element>
+      <path-element>F:\Dev\mmo-flash-mines\client\src</path-element>
       <path-element>F:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
+    <library-path append="true">
+      <path-element>F:\Dev\encrypt\RSA\libs\as3corelib.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\libs\FLVPlaybackAS3.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\libs\CryptoAs3.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\libs.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\pets.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\avatar.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\assets.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\gui.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\catalogs.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\modal.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\screens.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\servers.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\icons.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\iphone2.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\Farm.swc</path-element>
+      <path-element>F:\Dev\encrypt\RSA\swc\components.swc</path-element>
+    </library-path>
   </compiler>
   <file-specs>
-    <path-element>F:\Dev\encrypt\RSA\src\crateCatalog.as</path-element>
+    <path-element>F:\Dev\encrypt\RSA\src\test.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
-  <default-frame-rate>30</default-frame-rate>
+  <default-frame-rate>60</default-frame-rate>
   <default-size>
     <width>800</width>
     <height>600</height>
