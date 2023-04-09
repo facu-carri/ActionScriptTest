@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'07/12/2022'</value>
+      <value>'18/02/2023'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -36,6 +36,7 @@
       <path-element>F:\Dev\mmo-flash-flashlib\src</path-element>
       <path-element>F:\Dev\mmo-flash-mambo\src</path-element>
       <path-element>F:\Dev\mmo-flash-mines\client\src</path-element>
+      <path-element>F:\Dev\mmo-flash-client\globals</path-element>
       <path-element>F:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
