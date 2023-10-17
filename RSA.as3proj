@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\RSA.swf" />
+    <movie path="D:\Mundo-Gaturro\mundo-gaturro-web-page\public\MMO.swf" />
     <movie fps="60" />
     <movie width="800" />
     <movie height="600" />
@@ -12,12 +12,12 @@
     <movie minorVersion="0" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
-    <movie preferredSDK="Flex 4.6.0, AIR 3.1;4.6.0, 3.1;" />
+    <movie preferredSDK="D:\Mundo-Gaturro\SDK\flex_sdk_3.4.1.10084A" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\mmo-flash-flashlib\src" />
+    <class path="D:\Mundo-Gaturro\mmo-flash-flashlib\src" />
     <class path="..\..\mmo-flash-mambo\src" />
     <class path="..\..\mmo-flash-mines\client\src" />
   </classpaths>
@@ -26,7 +26,7 @@
     <option accessible="False" />
     <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
-    <option benchmark="True" />
+    <option benchmark="False" />
     <option es="False" />
     <option inline="False" />
     <option locale="" />
@@ -40,7 +40,7 @@
     <option showUnusedTypeSelectorWarnings="True" />
     <option strict="True" />
     <option useNetwork="True" />
-    <option useResourceBundleMetadata="True" />
+    <option useResourceBundleMetadata="False" />
     <option warnings="True" />
     <option verboseStackTraces="False" />
     <option linkReport="" />
@@ -59,19 +59,6 @@
     <element path="libs\as3corelib.swc" />
     <element path="libs\FLVPlaybackAS3.swc" />
     <element path="libs\CryptoAs3.swc" />
-    <element path="swc\libs.swc" />
-    <element path="swc\pets.swc" />
-    <element path="swc\avatar.swc" />
-    <element path="swc\assets.swc" />
-    <element path="swc\gui.swc" />
-    <element path="swc\catalogs.swc" />
-    <element path="swc\modal.swc" />
-    <element path="swc\screens.swc" />
-    <element path="swc\servers.swc" />
-    <element path="swc\icons.swc" />
-    <element path="swc\iphone2.swc" />
-    <element path="swc\Farm.swc" />
-    <element path="swc\components.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -91,7 +78,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\test.as" />
+    <compile path="src\test\main.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
